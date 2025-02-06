@@ -5,7 +5,7 @@ const sdk = require('api')('@render-api/v1.0#dnrc1ulf088q9j')
  
 
 app.get("/", async (req, res) => {
-    sdk.auth('rnd_hStWSBxAoyTjEfOv9dpOMzLblxHl')
+    sdk.auth(process.env.API_KEY)
     sdk.getServices({limit:'20'})
     .then(({data})=>res.json(data))
     .catch(e=>console.log(e))
