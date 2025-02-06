@@ -1,7 +1,5 @@
 import axios from 'axios';
-if (process.env.NODE_ENV === 'development') {
-  require('dotenv').config();
-}
+
 
 axios.defaults.baseURL = process.env.REACT_APP_API_KEY
 
