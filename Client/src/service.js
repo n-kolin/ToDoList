@@ -21,7 +21,7 @@ export default {
     console.log(result);
     console.log(result.data);
        
-    return result.data;
+    return result;
   },
 
   addTask: async(name)=>{
@@ -31,7 +31,7 @@ export default {
       isComplete:false 
     })
     //TODO
-    return result.data;
+    return result;
   },
 
   setCompleted: async(id, isComplete)=>{
@@ -40,13 +40,13 @@ export default {
       isComplete:isComplete 
     })
     //TODO
-    return result.data;
+    return result;
   },
 
   deleteTask:async(id)=>{
     console.log('deleteTask')
     const result = await axios.delete(`/items/${id+4}`)
     //TODO
-    return result.data;
+    return result;
   }
 };
