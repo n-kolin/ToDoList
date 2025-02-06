@@ -17,11 +17,11 @@ axios.interceptors.response.use(
 
 export default {
   getTasks: async () => {
-    const result = await axios.get(`/items`) 
+    const result = await axios.get(`/`) 
     console.log(result);
     console.log(result.data);
        
-    return result;
+    return result.data;
   },
 
   addTask: async(name)=>{
@@ -31,7 +31,7 @@ export default {
       isComplete:false 
     })
     //TODO
-    return result;
+    return result.data;
   },
 
   setCompleted: async(id, isComplete)=>{
@@ -40,13 +40,13 @@ export default {
       isComplete:isComplete 
     })
     //TODO
-    return result;
+    return result.data;
   },
 
   deleteTask:async(id)=>{
     console.log('deleteTask')
     const result = await axios.delete(`/items/${id+4}`)
     //TODO
-    return result;
+    return result.data;
   }
 };
