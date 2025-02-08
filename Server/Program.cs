@@ -55,7 +55,9 @@ var item = await db.Items.FindAsync(id);
 
 if (item is null)
 return Results.NotFound();
+if(updateItem.Name!=null)
 item.Name = updateItem.Name;
+
 item.IsComplete = updateItem.IsComplete;
 await db.SaveChangesAsync();
 return Results.NoContent();
