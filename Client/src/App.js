@@ -6,9 +6,7 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   async function getTodos() {
-    const todos = await service.getTasks();
-    console.log(todos);
-    
+    const todos = await service.getTasks();    
     setTodos(todos);
   }
 
@@ -43,7 +41,6 @@ function App() {
       </header>
       <section className="main" style={{ display: "block" }}>
         <ul className="todo-list">
-        {console.log(todos)}
         
           {todos.map(todo => {
             return (
