@@ -22,7 +22,13 @@ var app = builder.Build();
 // if (app.Environment.IsDevelopment())
 // {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+{
+    
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo API V1");;
+    c.RoutePrefix = string.Empty;
+});
+
 // }
 app.UseCors("MyPolicy");
 
@@ -33,13 +39,6 @@ return await db.Items.ToListAsync();
 );
 
 
-//הוספת GETBYID עוד לא העליתי ל GITHUB
-app.MapGet("/items/{id}", async (int id, ToDoDbContext db) => {
-    var item = await db.Items.FindAsync(id);
-    return item is not null ? Results.Ok(item) : Results.NotFound();
-});
-
-//
 app.MapPost("/items", async (Item item, ToDoDbContext db) =>{
 db.Items.Add(item);
 await db.SaveChangesAsync();
