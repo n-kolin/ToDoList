@@ -2,7 +2,7 @@ import axios from 'axios';
 // require('dotenv').config();
 
 
-axios.defaults.baseURL = process.env.REACT_APP_API_KEY_2
+axios.defaults.baseURL = process.env.REACT_APP_API_KEY_3
 
 axios.interceptors.response.use(
   response => response,
@@ -17,7 +17,7 @@ axios.interceptors.response.use(
 
 export default {
   getTasks: async () => {
-    const result = await axios.get(`items`) 
+    const result = await axios.get(`/items`) 
     console.log(result);
     console.log(result.data);
        
@@ -26,7 +26,7 @@ export default {
 
   addTask: async(name)=>{
     console.log('addTask', name)
-    const result = await axios.post(`items`,{
+    const result = await axios.post(`/items`,{
       name:name,
       isComplete:false 
     })
@@ -36,7 +36,7 @@ export default {
 
   setCompleted: async(id, isComplete)=>{
     console.log('setCompleted', {id, isComplete})
-    const result = await axios.put(`items/${id}`,{
+    const result = await axios.put(`/items/${id}`,{
       isComplete:isComplete 
     })
     //TODO
@@ -45,7 +45,7 @@ export default {
 
   deleteTask:async(id)=>{
     console.log('deleteTask')
-    const result = await axios.delete(`items/${id+4}`)
+    const result = await axios.delete(`/items/${id+4}`)
     //TODO
     return result.data;
   }
