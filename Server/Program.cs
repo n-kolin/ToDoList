@@ -60,4 +60,5 @@ return Results.NoContent();
 
 
 app.MapGet("/",() => "Server API is running !!");
+app.MapGet("/abc",() => "ABC 🔤 !!");
 app.Run();
