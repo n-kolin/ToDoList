@@ -18,10 +18,10 @@ public partial class ToDoDbContext : DbContext
 
     public virtual DbSet<Item> Items { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
+    // public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseMySql("name=ToDoDB", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.33-mysql"));
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //     => optionsBuilder.UseMySql("name=ToDoDB", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.33-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -38,15 +38,15 @@ public partial class ToDoDbContext : DbContext
             entity.Property(e => e.Name).HasMaxLength(100);
         });
 
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
+        // modelBuilder.Entity<User>(entity =>
+        // {
+        //     entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("user");
+        //     entity.ToTable("user");
 
-            entity.Property(e => e.Name).HasMaxLength(100);
-            entity.Property(e => e.Password).HasMaxLength(20);
-        });
+        //     entity.Property(e => e.Name).HasMaxLength(100);
+        //     entity.Property(e => e.Password).HasMaxLength(20);
+        // });
 
         OnModelCreatingPartial(modelBuilder);
     }
