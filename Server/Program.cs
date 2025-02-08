@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TodoApi;
 using Pomelo.EntityFrameworkCore.MySql;
+using System.Reflection.Metadata.Ecma335;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,8 +27,9 @@ var app = builder.Build();
 app.UseCors("MyPolicy");
 
 
-app.MapGet("/items", async (ToDoDbContext db) => 
-await db.Items.ToListAsync()
+app.MapGet("/items", async (ToDoDbContext db) => {
+return await db.Items.ToListAsync();
+}
 );
 app.MapPost("/items", async (Item item, ToDoDbContext db) =>{
 db.Items.Add(item);
