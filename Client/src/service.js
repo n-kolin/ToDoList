@@ -44,7 +44,7 @@ export default {
 
   deleteTask:async(id)=>{
     console.log('deleteTask')
-    const result = await axios.delete(`/items/${id+4}`)
+    const result = await axios.delete(`/items/${id}`)
     //TODO
     return result.data;
   }
