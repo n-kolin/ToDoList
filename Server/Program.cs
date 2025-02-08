@@ -31,6 +31,15 @@ app.MapGet("/items", async (ToDoDbContext db) => {
 return await db.Items.ToListAsync();
 }
 );
+
+
+//הוספת GETBYID עוד לא העליתי ל GITHUB
+app.MapGet("/items/{id}", async (int id, ToDoDbContext db) => {
+    var item = await db.Items.FindAsync(id);
+    return item is not null ? Results.Ok(item) : Results.NotFound();
+});
+
+//
 app.MapPost("/items", async (Item item, ToDoDbContext db) =>{
 db.Items.Add(item);
 await db.SaveChangesAsync();
