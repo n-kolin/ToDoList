@@ -1,25 +1,28 @@
 const express = require("express");
+const axios = require("axios"); 
 const app = express();
 const port = process.env.PORT || 3000;
-require('api');
- //
-//  curl --request GET \
-//      --url 'https://api.render.com/v1/services?includePreviews=true&limit=20' \
-//      --header 'accept: application/json' \
-//      --header 'authorization: Bearer rnd_hStWSBxAoyTjEfOv9dpOMzLblxHl'
-//  //
 
-
-app.get("https://api.render.com/v1/services?includePreviews=true&limit=20",
-    { headers: { 'authorization': "Bearer rnd_hStWSBxAoyTjEfOv9dpOMzLblxHl" } },
-     async (req, res) => {
-    // sdk.auth(process.env.API_KEY)
-    await sdk.getServices()
-    .then(({data})=>res.json(data))
-    .catch(e=>console.log(e))
+app.get("/services", async (req, res) => {
+    try {
+        const response = await axios.get("https://api.render.com/v1/services", {
+            headers: {
+                'accept': 'application/json',
+                'authorization': `Bearer ${process.env.API_KEY}`,
+            },
+            params: {
+                includePreviews: true,
+                limit: 20
+            }
+        });
+        res.json(response.data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching data");
+    }
 });
 
-console.log('hello node')
-app.listen(port, ()=>{
-    console.log('running port', port)
-})
+console.log('hello node');
+app.listen(port, () => {
+    console.log('running port', port);
+});
