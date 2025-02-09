@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const sdk = require('api')('https://api.render.com/v1/services?includePreviews=true&limit=20')
+require('api');
  //
 //  curl --request GET \
 //      --url 'https://api.render.com/v1/services?includePreviews=true&limit=20' \
@@ -10,7 +10,7 @@ const sdk = require('api')('https://api.render.com/v1/services?includePreviews=t
 //  //
 
 
-app.get("/", async (req, res) => {
+app.get("https://api.render.com/v1/services?includePreviews=true&limit=20/", async (req, res) => {
     sdk.auth(process.env.API_KEY)
     await sdk.getServices({limit:'20'})
     .then(({data})=>res.json(data))
