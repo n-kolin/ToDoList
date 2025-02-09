@@ -1,8 +1,14 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const sdk = require('api')('@render-api/v1.0#dnrc1ulf088q9j')
- 
+const sdk = require('api')('https://api.render.com/v1/services?includePreviews=true&limit=20')
+ //
+//  curl --request GET \
+//      --url 'https://api.render.com/v1/services?includePreviews=true&limit=20' \
+//      --header 'accept: application/json' \
+//      --header 'authorization: Bearer rnd_hStWSBxAoyTjEfOv9dpOMzLblxHl'
+//  //
+
 
 app.get("/", async (req, res) => {
     sdk.auth(process.env.API_KEY)
