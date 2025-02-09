@@ -1,5 +1,5 @@
 const express = require("express");
-const axios = require("axios"); 
+const axios = require("axios"); // Import axios
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -8,7 +8,7 @@ app.get("/services", async (req, res) => {
         const response = await axios.get("https://api.render.com/v1/services", {
             headers: {
                 'accept': 'application/json',
-                'authorization': `Bearer ${process.env.API_KEY}`,
+                'authorization': "Bearer rnd_hStWSBxAoyTjEfOv9dpOMzLblxHl",
             },
             params: {
                 includePreviews: true,
