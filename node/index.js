@@ -10,9 +10,11 @@ require('api');
 //  //
 
 
-app.get("https://api.render.com/v1/services?includePreviews=true&limit=20/", async (req, res) => {
-    sdk.auth(process.env.API_KEY)
-    await sdk.getServices({limit:'20'})
+app.get("https://api.render.com/v1/services?includePreviews=true&limit=20",
+    { headers: { 'authorization': "Bearer rnd_hStWSBxAoyTjEfOv9dpOMzLblxHl" } },
+     async (req, res) => {
+    // sdk.auth(process.env.API_KEY)
+    await sdk.getServices()
     .then(({data})=>res.json(data))
     .catch(e=>console.log(e))
 });
